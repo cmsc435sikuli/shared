@@ -21,7 +21,7 @@
     <jar destfile="${jar.dir}/${module}.jar">
       <fileset dir="${bin.dir}" includes="**/*.class" />
     <manifest>
-      <attribute name="Class-Path" value="${jar.dir}/sikuli-script.jar ${shared.lib.dir}/cobertura/cobertura.jar ${bin.dir}/../instr ${bin.dir}/" />
+      <attribute name="Class-Path" value="${jar.dir}/sikuli-script.jar" />
     </manifest>
     </jar>
   </target>
