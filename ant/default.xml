@@ -2,7 +2,7 @@
 <project name="common">
 
   <target name="generate">
-    <!-- Used to generate files and build files -->
+    <!-- Used to generate files and build files  ff-->
     <echo message="No files to generate for module ${module}" />
   </target>
 
