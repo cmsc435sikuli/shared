@@ -2,7 +2,7 @@
 <project name="Default Properties">
 
   <!-- Default properties -->
-  <property name="root.dir" value="$WORKSPACE" />
+  <property name="root.dir" value="." />
   <property name="src.dir" value="src" />
   <property name="bin.dir" value="bin" />
   <property name="instr.dir" value="instr" />
