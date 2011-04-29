@@ -1,6 +1,9 @@
 
 import os, sys
-from mercurial import commands, ui, hg
+try:
+    from mercurial import commands, ui, hg
+except:
+    pass
 from subprocess import call
 
 def main(argv):
@@ -25,7 +28,7 @@ def main(argv):
 
         if not os.path.exists(os.path.join(destdir, module)):
             # Attempt to clone the repository to the destination
-            if module == "GUIRipper-Plugin-JFC" or module == "GUIRipper-Core" or module == "GUITARModel-Plugin-JFC" or module == "GUITARModel-Core" or module == "GUIReplayer-Plugin-JFC" or module == "GUIReplayer-Core":
+            if module == "GUIRipper-Plugin-JFC" or module == "GUIRipper-Core" or module == "GUITARModel-Plugin-JFC" or module == "GUITARModel-Core" or module == "GUIReplayer-Plugin-JFC" or module == "GUIReplayer-Core" or module == "guitar":
 				call("git clone git://github.com/cmsc435sikuli/" + module + ".git " + destdir + "/" +  module, shell=True)
             else:
                 url = '%s/%s%s' % (path, module, '-unstable' if unstable else '')
