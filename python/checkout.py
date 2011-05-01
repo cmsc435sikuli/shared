@@ -14,14 +14,14 @@ def main(argv):
         repo = hg.repository(
             ui.ui(), os.path.join(os.path.dirname(__file__), '..'))
         sharedpath = repo.ui.config('paths', 'default', None)
+        if sharedpath is None:
+            raise Exception('no default path in the shared directory!')
+
+        unstable = sharedpath.endswith('-unstable')
+        path = os.path.dirname(sharedpath)
+        print 'using %s as remote repository path' % path
     except:
         pass
-    if sharedpath is None:
-        raise Exception('no default path in the shared directory!')
-
-    unstable = sharedpath.endswith('-unstable')
-    path = os.path.dirname(sharedpath)
-    print 'using %s as remote repository path' % path
 
     for module in reduce(lambda x, y: x + y.split(','), argv, []):
         if module.endswith('-unstable'):
@@ -37,7 +37,10 @@ def main(argv):
                 else:
                     url = '%s/%s%s' % (path, module, '')
                 print 'checking out %s to %s' % (url, destdir)
-                commands.clone(ui.ui(), url, os.path.join(destdir, module))
+                try:
+                    commands.clone(ui.ui(), url, os.path.join(destdir, module))
+                except:
+                    pass;
         else:
             # Repository already exists, skip
             print '%s already exists (skipping)' % module
