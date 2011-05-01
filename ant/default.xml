@@ -14,7 +14,6 @@
       <include name="**/*.java" />
       <classpath>
         <fileset dir="${jar.dir}" includes="**/*.jar" />
-	<fileset dir="${shared.lib.dir}" includes="**/*.jar" />
         <path refid="classpath" />
       </classpath>
     </javac>
@@ -22,7 +21,7 @@
     <jar destfile="${jar.dir}/${module}.jar">
       <fileset dir="${bin.dir}" includes="**/*.class" />
     <manifest>
-      <attribute name="Class-Path" value="${shared.lib.dir}/sikuli-script.jar" />
+      <attribute name="Class-Path" value="${jar.dir}/sikuli-script.jar" />
     </manifest>
     </jar>
   </target>
