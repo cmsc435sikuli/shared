@@ -30,7 +30,7 @@ def main(argv):
         if not os.path.exists(os.path.join(destdir, module)):
             # Attempt to clone the repository to the destination
             if module == "GUIRipper-Plugin-JFC" or module == "GUIRipper-Core" or module == "GUITARModel-Plugin-JFC" or module == "GUITARModel-Core" or module == "GUIReplayer-Plugin-JFC" or module == "GUIReplayer-Core" or module == "guitar":
-				os.system("c:\\GIT\\PortableGit-1.7.4-preview20110204\\libexec\\git-core\\git.exe clone git://github.com/cmsc435sikuli/" + module + ".git " + destdir + "/" +  module)
+				os.system("c:\\GIT\\PortableGit-1.7.4-preview20110204\\bin\\git.exe clone git://github.com/cmsc435sikuli/" + module + ".git " + destdir + "/" +  module)
             else:
                 if unstable:
                     url = '%s/%s%s' % (path, module, '-unstable')
