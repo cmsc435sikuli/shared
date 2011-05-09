@@ -9,7 +9,19 @@
   <target name="build" depends="depends,generate">
     <mkdir dir="${bin.dir}" />
     <mkdir dir="${jar.dir}" />
-    
+    <copy file="${root.dir}/shared/log4j.properties" todir="${root.dir}"/>
+    <copy file="${root.dir}/shared/configuration.xml" todir="${root.dir}"/>
+
+<condition property="isWindows">
+<os family="windows"/>
+</condition>
+<condition property="isMac">
+<os family="mac"/>
+</condition>
+<condition property="isUnix">
+<os family="unix"/>
+</condition>
+
     <javac srcdir="${src.dir}" destdir="${bin.dir}" debug="true">
       <include name="**/*.java" />
       <classpath>
@@ -17,13 +29,10 @@
         <path refid="classpath" />
       </classpath>
     </javac>
-    
-    <jar destfile="${jar.dir}/${module}.jar">
-      <fileset dir="${bin.dir}" includes="**/*.class" />
-    <manifest>
-      <attribute name="Class-Path" value="${jar.dir}/sikuli-script.jar" />
-    </manifest>
-    </jar>
+   
+<antcall target="loadsikuliwindows"/>
+<antcall target="loadsikulimac"/>
+<antcall target="loadsikulilinux"/>
   </target>
 
   <target name="doc">
@@ -152,5 +161,36 @@
     <echo message="  all:        Builds dist and depends." />
     <echo message="  install:    Installs this library and dependencies." />
   </target>
+
+  <target name="loadsikuliwindows" if="isWindows">
+<echo message="windows"/>
+<jar destfile="${jar.dir}/${module}.jar">
+      <fileset dir="${bin.dir}" includes="**/*.class" />
+    <manifest>
+      <attribute name="Class-Path" value="${root.dir}/shared/sikuli-script-windows.jar" />
+    </manifest>
+    </jar>
+
+</target>
+
+<target name="loadsikulimac" if="isMac">
+<echo message="windows"/>
+<jar destfile="${jar.dir}/${module}.jar">
+      <fileset dir="${bin.dir}" includes="**/*.class" />
+    <manifest>
+      <attribute name="Class-Path" value="${root.dir}/shared/sikuli-script-mac.jar" />
+    </manifest>
+    </jar>
+</target>
+
+<target name="loadsikulilinux" if="isUnix">
+<echo message="windows"/>
+<jar destfile="${jar.dir}/${module}.jar">
+      <fileset dir="${bin.dir}" includes="**/*.class" />
+    <manifest>
+      <attribute name="Class-Path" value="${root.dir}/shared/sikuli-script-linux.jar" />
+    </manifest>
+    </jar>
+</target>
 
 </project>
