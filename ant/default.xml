@@ -31,8 +31,8 @@
     </javac>
    
 <antcall target="loadsikuliwindows"/>
-<antcall target="loadsikulimac"/>
 <antcall target="loadsikulilinux"/>
+<antcall target="loadsikulimac"/>
   </target>
 
   <target name="doc">
